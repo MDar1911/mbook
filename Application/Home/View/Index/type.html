@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>图书分类</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="__PUBLIC__/JQM/jquery.mobile-1.4.5.min.css" >
+<script src="__PUBLIC__/JQM/jquery-1.11.1.min.js"></script>
+<script src="__PUBLIC__/JQM/jquery.mobile-1.4.5.min.js"></script>
+<style>
+body {
+  margin: 0 auto;
+  text-align:center;
+  padding:0;
+}
+div, ul, li, dl, dt, dd, h1, h2, h3, h4, p {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+a {
+  text-decoration:none;
+}
+
+.ui-bar-f
+{
+background-color:#F07;
+border:#FF0 1px solid;
+}
+.ui-bar-f .ui-btn
+{
+background-color:gray;
+}
+.ui-bar-f .ui-btn:hover
+{
+background-color:green;
+}
+.ui-body-f
+{
+background-color:pink;
+}
+.ui-body-f .ui-btn
+{
+  background-color:pink;
+}
+.ui-body-f .ui-btn:hover
+{
+  background-color:pink;
+}
+</style> 
+</head>
+
+<body>
+<div data-role="page"  data-theme="f">
+  <div data-role="header"  data-theme="f"> <a href="index.html" data-role="button" data-icon="home"  data-theme="a">首页</a>
+    <h1>图书分类</h1>
+  </div>
+  <div data-role="content"  data-theme="f">
+    <div data-role="collapsible-set"  data-theme="f">
+      <volist name='b' id='bdata'> <!--读取大类-->
+        <div data-role="collapsible" data-collapsed="true"  data-theme="f">
+          <h1>{$bdata['b_name']}</h1>
+          <ul data-role="listview"  data-inset="false"  data-theme="f">
+            <foreach name='s' item='sdata'> <!--读取小类-->
+              <if condition="$bdata['b_id'] eq $sdata['b_id']"> <!--条件判断-->
+               <li><a data-ajax="false" href="../book/booklist?sid={$sdata['s_id']}"  data-theme="f"><span>{$sdata['s_name']}</span></a></li>
+              </if>
+            </foreach>
+          </ul>
+        </div>
+      </volist>
+    </div>
+  </div>
+  <div data-role="footer"  data-theme="f">
+    <h1>机电书店</h1>
+  </div>
+</div>
+</body>
+</html>
